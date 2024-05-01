@@ -1,47 +1,67 @@
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
+import {primary} from "@/lib/colors";
 
-export const ButtonStyle = styled.button`
-border: 0;
-padding: 5px 15px;
-border-radius: 5px;
-cursor: pointer;
-display: inline-flex;
-align-items: center;
-text-decoration: none;
-svg{
+export const ButtonStyle = css`
+  border:0;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight:500;
+  svg{
     height: 16px;
     margin-right: 5px;
-}
-${props => props.white && props.outline && css`
+  }
+  ${props => props.block && css`
+    display: block;
+    width: 100%;
+  `}
+  ${props => props.white && !props.outline && css`
+    background-color: #fff;
+    color: #000;
+  `}
+  ${props => props.white && props.outline && css`
     background-color: transparent;
     color: #fff;
     border: 1px solid #fff;
-`}
-${props => props.white && !props.outline && css`
-    background-color: #fff;
-    color: #000;
-`}
-${props => props.primary && css`
-    background-color: #5542F6;
+  `}
+  ${props => props.black && !props.outline && css`
+    background-color: #000;
     color: #fff;
-    border: 1px solid #5542F6;
-`}
-${props => props.size === "l" && css`
+  `}
+  ${props => props.black && props.outline && css`
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+  `}
+  ${props => props.primary && !props.outline && css`
+    background-color: ${primary};
+    border: 1px solid ${primary};
+    color:#fff;
+  `}
+  ${props => props.primary && props.outline && css`
+    background-color: transparent;
+    border: 1px solid ${primary};
+    color:${primary};
+  `}
+  ${props => props.size === 'l' && css`
+    font-size:1.2rem;
     padding: 10px 20px;
-    font-size: 1.2rem;
     svg{
-        height: 20px;
+      height: 20px;
     }
-`}
-`
+  `}
+`;
 
-export const StyledButton = styled.button`
-${ButtonStyle}
-`
+const StyledButton = styled.button`
+  ${ButtonStyle}
+`;
 
-export default function Button({ children, ...rest }) {
-    return (
-        <StyledButton {...rest}>{children}</StyledButton>
-    );
+export default function Button({children,...rest}) {
+  return (
+    <StyledButton {...rest}>{children}</StyledButton>
+  );
 }
-
