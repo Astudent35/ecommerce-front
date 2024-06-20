@@ -10,7 +10,10 @@ import styled from "styled-components";
 
 const ColumnsWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1.2fr .8fr;
+    grid-template-columns: 1fr;
+    @media screen and (min-width: 768px) {
+        grid-template-columns: 1.2fr .8fr;
+    }
     gap: 40px;
     margin-top: 40px;
 `
@@ -22,13 +25,17 @@ const Box = styled.div`
 `
 
 const ProductInfoCell = styled.td`
-    padding: 10px 0;
+padding: 10px 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px; /* Optional: Adds space between the image and the text */
 `
 
 const ProductImageBox = styled.div`
     width: 100px;
     height: 100px;
-    padding: 10px;
+    padding: 2px;
     border: 1px solid rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
@@ -37,6 +44,9 @@ const ProductImageBox = styled.div`
     img{
         max-width: 80px;
         max-height: 80px;
+    }
+    @media screen and (min-width: 768px) {
+        padding: 10px;
     }
 `
 
@@ -157,9 +167,8 @@ export default function CartPage(){
                                         </tr>
                                     ))}
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total: ${total}</td>
+                                        <td colSpan="2"></td>
+                                        <td style={{ paddingTop: '20px', fontWeight: 'bold' }}>Total: ${total}</td>
                                     </tr>
                                 </tbody>
                             </Table>
